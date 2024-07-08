@@ -12,6 +12,10 @@ import { useState } from 'react';
 
 const router = createBrowserRouter([
   {
+    path: "/",
+    element: <App />,
+  },
+  {
     path: "/:imgName",
     element: <App />,
   },
@@ -21,7 +25,7 @@ function App({ children }) {
   let params = useParams();
   let file = params["imgName"];
   let [state, setState] = useState({
-    file: params["imgName"]
+    file: params.imgName == undefined? "menu": params["imgName"]
   })
 
   // let file = "params.img";
