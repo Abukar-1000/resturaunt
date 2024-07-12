@@ -8,7 +8,7 @@ import {
   useParams,
 } from "react-router-dom";
 import "./index.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -23,10 +23,20 @@ const router = createBrowserRouter([
 
 function App({ children }) {
   let params = useParams();
-  let file = params["imgName"];
   let [state, setState] = useState({
     file: params["*"] == ""? "menu": params["imgName"]
   })
+
+  let minutes = 238;
+  let time = minutes * (60 * 1000);
+  let intervalId = null;
+  useEffect(() => {
+    intervalId = setInterval(() => {
+      window.location.reload();
+    }, time);
+
+    return () => { clearInterval(intervalId); }
+  }, [intervalId]);
 
   // let file = "params.img";
   console.log("param:", params);
