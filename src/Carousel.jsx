@@ -78,6 +78,12 @@ export function Carousel() {
     
     console.log(currentState.value, INTERVAL_TIME);
     return (<>
-        {currentState.value}
+        <Box
+            sx={{
+                backgroundColor: "#000000"
+            }}
+        >
+            {currentState.value}
+        </Box>
     </>)
 }
