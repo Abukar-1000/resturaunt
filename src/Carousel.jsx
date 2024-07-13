@@ -35,7 +35,6 @@ export function Carousel() {
         11, 12, 13, 14
     ]
 
-    console.log("all", allImages);
     let images = allImages
     .map((imageName, index) => {
         return <Slide
@@ -51,7 +50,8 @@ export function Carousel() {
                     </Box>
         </Slide>
     })
-
+    console.log("all", images);
+    
     const ONE_SECOND = 1000;
     const INTERVAL_TIME = 5 * ONE_SECOND;
 
