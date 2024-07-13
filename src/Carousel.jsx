@@ -53,7 +53,7 @@ export function Carousel() {
     console.log("all", images);
     
     const ONE_SECOND = 1000;
-    const INTERVAL_TIME = 1 * ONE_SECOND;
+    const INTERVAL_TIME = 5 * ONE_SECOND;
 
 
     let [currentState, setCurrentState] = useState({
