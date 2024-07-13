@@ -40,7 +40,7 @@ export function Carousel() {
         return <Slide
                     key={index}
                     in={true}
-                    timeout={300}
+                    timeout={500}
                     direction="up"
                 >
                     <Box
