@@ -54,6 +54,7 @@ export function Carousel() {
     const INTERVAL_TIME = 5 * ONE_SECOND;
 
     let image = useCarousel(images, INTERVAL_TIME);
+    console.log(image, INTERVAL_TIME);
     
     return (<>
         {image}
