@@ -51,7 +51,7 @@ export function Carousel() {
     })
 
     const ONE_SECOND = 1000;
-    const INTERVAL_TIME = 1 * ONE_SECOND;
+    const INTERVAL_TIME = 5 * ONE_SECOND;
 
     let image = useCarousel(images, INTERVAL_TIME);
     
