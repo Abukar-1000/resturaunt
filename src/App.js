@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import { useEffect, useState } from 'react';
+import { Carousel } from './Carousel';
+
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
     path: "/:imgName",
     element: <App />,
   },
+  {
+    path: "slides",
+    element: <Carousel />
+  }
 ]);
 
 function App({ children }) {
