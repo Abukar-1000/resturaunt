@@ -1,7 +1,7 @@
 import { Box, Fade, Slide } from "@mui/material";
 import { CustomImg } from "./CustomImg";
 import useCarousel from "./CustomHooks/useCarousel";
-
+import { useState, useEffect } from "react";
 export function Carousel() {
  
     /**
@@ -55,10 +55,30 @@ export function Carousel() {
     const ONE_SECOND = 1000;
     const INTERVAL_TIME = 5 * ONE_SECOND;
 
-    let image = useCarousel(images, INTERVAL_TIME);
-    console.log(image, INTERVAL_TIME);
+
+    let [currentState, setCurrentState] = useState({
+        index: 0,
+        value: images[0]
+    });
     
+    useEffect(() => {
+        let intervalId = setInterval(() => {
+            
+            console.log(currentState.index);
+            setCurrentState(prevState => {
+                let nextIndex = prevState.index++ % images.length;
+                return {
+                    index: nextIndex,
+                    value: images[nextIndex]
+                };
+            })
+        }, INTERVAL_TIME)
+
+        return () => { clearInterval(intervalId); }
+    }, [images, INTERVAL_TIME]);
+    
+    console.log(currentState.value, INTERVAL_TIME);
     return (<>
-        {image}
+        {currentState.value}
     </>)
 }
