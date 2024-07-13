@@ -45,7 +45,7 @@ export function Carousel() {
                     direction="up"
                 >
                     <Box>
-                        <CustomImg imgName={`SlideShow/${imageName}.jpeg`} />
+                        <CustomImg key={index} imgName={`SlideShow/${imageName}.jpeg`} />
                     </Box>
         </Slide>
     })
