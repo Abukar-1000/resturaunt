@@ -10,7 +10,7 @@ import {
 import "./index.css";
 import { useEffect, useState } from 'react';
 import { Carousel } from './Carousel';
-
+import UpdateMenue from './Update/Menue/UpdateMenue';
 
 const router = createBrowserRouter([
   {
@@ -24,8 +24,18 @@ const router = createBrowserRouter([
   {
     path: "slides",
     element: <Carousel />
+  },
+  {
+    path: "/update/menue",
+    element: <UpdateMenue />,
+    errorElement: <h1>Error was err</h1>
+  },
+  {
+    path: "/update/slideshow",
+    element: <h1>Hi from slideshow</h1>
   }
 ]);
+
 
 function App({ children }) {
   let params = useParams();
