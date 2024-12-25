@@ -2,7 +2,7 @@ import { Box, Stack } from "@mui/material";
 import Screen from "./Components/Screen";
 import { ImageUploadProvider } from "../Contexts/ImageContext";
 import { MenueOpperationProvider } from "../Contexts/MenueOpperation";
-
+import config from "../Config/config";
 import {
   QueryClient,
   QueryClientProvider,
@@ -39,12 +39,10 @@ function UpdateMenue() {
                         gap={4}
                     >
                         {
-                            screens.map((screen, index) => (
+                            screens.slice(0,3).map((screen, index) => (
                                 <Screen 
                                     key={index}
-                                    config={{
-                                        key: screen
-                                    }} 
+                                    config={config[index]} 
                                 />
                             ))
                         }

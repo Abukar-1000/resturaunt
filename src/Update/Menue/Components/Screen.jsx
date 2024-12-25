@@ -1,13 +1,15 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Skeleton } from "@mui/material";
 import { useRef, useState } from "react";
 import OptionsOverlay from "./OptionsOverlay";
 import { useImageUpload } from "../../Contexts/MenueOpperation";
-
+import useFetchMenue from "../../../CustomHooks/Update/useFetchMenue";
 
 function Screen({
     config   
 }) {
     
+    const query = useFetchMenue(config)
+    console.log("query data is:", query)
     const displayDimensions = {
         height: "50dvh",
         width: "23dvw",
@@ -52,33 +54,7 @@ function Screen({
         }
     }
 
-    const imgNotPositioned = (
-        (
-            !imgStyle?.width ||
-            !imgStyle?.height
-        ) &&
-        displayRef?.current?.offsetWidth &&
-        displayRef?.current?.offsetHeight
-    )
-
-    const imgWasResized = (
-        !imgNotPositioned &&
-        `${displayRef.current?.offsetWidth}px` !== imgStyle.width ||
-        `${displayRef.current?.offsetHeight}px` !== imgStyle.height
-    )
-
-    console.log("img positioned:", imgNotPositioned || imgWasResized);
-    // if (imgNotPositioned || imgWasResized) {
-    //     setImgStyle(prev => ({
-    //         ...prev,
-    //         width: `${displayRef.current?.offsetWidth}px`,
-    //         height: `${displayRef.current?.offsetHeight}px`
-    //     }));
-    // }
-
-
-    console.log("img styles: ", imgStyle)
-    console.log("display styles: ", displayRef?.current?.offsetWidth, displayRef?.current?.offsetHeight)
+    const initialImgData = query?.data?.data?.content;
     return (
         <Paper
             elevation={elevation}
@@ -86,7 +62,6 @@ function Screen({
                 height: displayDimensions.height,
                 width: displayDimensions.width,
                 borderRadius: "7px",
-                border: "1px solid black",
                 position: "relative",
                 overflow: "hidden"
             }}
@@ -110,13 +85,34 @@ function Screen({
                     "-webkit-filter": `blur(${elevation - 4}px)`,
                 }}  
             >
-
-                <img 
-                    alt=""
-                    src={image}
-                    style={imgStyle}
-                    onLoad={e => fixImageOrientation(e)}
-                />
+                {
+                    image && (
+                        <img 
+                            alt=""
+                            src={image}
+                            style={imgStyle}
+                            onLoad={e => fixImageOrientation(e)}
+                        />
+                    )
+                }
+                {
+                    query.isLoading && (
+                        <Skeleton 
+                            width={"50dvh"}
+                            height={"23dvw"}
+                        />   
+                    )
+                }
+                {
+                    initialImgData && (
+                        <img 
+                            alt=""
+                            src={"data:image/png;base64, " + initialImgData}
+                            style={imgStyle}
+                            onLoad={e => fixImageOrientation(e)}
+                        />
+                    )
+                }
             </Box>
         </Paper>
     );
