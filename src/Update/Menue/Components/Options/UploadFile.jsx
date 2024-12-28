@@ -1,10 +1,7 @@
 import { UploadFileRounded } from '@mui/icons-material';
-import BackupIcon from '@mui/icons-material/Backup';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useEffect, useState } from "react"
-// import { useImageUpload } from '../../../Contexts/ImageContext';
-import { useQuery } from '@tanstack/react-query'
+import { useState } from "react"
 import useReadFile from './Overlay/useReadFile';
 import { useImageUpload } from '../../../Contexts/MenueOpperation';
 
@@ -52,7 +49,7 @@ function UploadFile({
     if (file !== null && file?.length && file !== opperation?.payload?.image) {
         console.log("File:", file)
         setOpperation({
-            target: config?.key,
+            target: config?.display,
             payload: {
                 image: file
             }

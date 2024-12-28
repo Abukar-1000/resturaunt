@@ -14,6 +14,7 @@ function UpdateMenue() {
     const queryClient = new QueryClient()
     // use config later
     const screens = [1,2,3,4]
+    console.log("all configs:", config);
     return (
         // might be unnecissary
         <QueryClientProvider client={queryClient}>
