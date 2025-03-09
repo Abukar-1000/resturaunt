@@ -32,7 +32,8 @@ function useFetchMenue(config) {
             }
 
             return metaData?.download_url
-        }
+        },
+        retry: config.retryCount
     })
 }
 

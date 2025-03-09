@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import { useState } from "react"
 import useReadFile from './Overlay/useReadFile';
 import { useImageUpload } from '../../../Contexts/MenueOpperation';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -20,7 +21,9 @@ const VisuallyHiddenInput = styled('input')({
   
 // add config to a dispatch
 function UploadFile({
-    config
+    config,
+    isMouseOver,
+    variant = "outlined"
 }) {
 
     // use context here
@@ -61,19 +64,21 @@ function UploadFile({
             key={12}
             component="label"
             role={undefined}
-            variant="outlined"
+            variant={variant}
             color='success'
             tabIndex={-1}
-            startIcon={<UploadFileRounded/>}
+            startIcon={<CloudUploadIcon/>}
             sx={{
-                width: "80%",
-                display: true? "": "none",
+                // width: "80%",
+                // display: true? "": "none",
+                opacity: isMouseOver? 100: 0,
             }}
         >
-            Upload Menue
+            Upload
             <VisuallyHiddenInput
                 type="file"
-                onChange={ (e) => {
+                onChange={(e) => {
+                    console.log("file options", e)
                     const isValid = e.target?.files[0] !== undefined;
                     setFilePayload(isValid? e.target?.files[0]: undefined);
                 }}

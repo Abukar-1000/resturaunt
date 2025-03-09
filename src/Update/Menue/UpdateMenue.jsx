@@ -1,5 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import Screen from "./Components/Screen";
+import ScreenV2 from "./Components/Remodeled/ScreenV2";
 import { ImageUploadProvider } from "../Contexts/ImageContext";
 import { MenueOpperationProvider } from "../Contexts/MenueOpperation";
 import config from "../Config/config";
@@ -39,9 +40,17 @@ function UpdateMenue() {
                         flexDirection={"row"}
                         gap={4}
                     >
-                        {
+                        {/* {
                             screens.slice(0,3).map((screen, index) => (
                                 <Screen 
+                                    key={index}
+                                    config={config[index]} 
+                                />
+                            ))
+                        } */}
+                        {
+                            screens.slice(0,3).map((screen, index) => (
+                                <ScreenV2 
                                     key={index}
                                     config={config[index]} 
                                 />

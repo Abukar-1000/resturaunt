@@ -20,6 +20,7 @@ const config = menues.map((m, index) => ({
     file: m,
     path: "public/" + m,
     display: index,
+    retryCount: 3,
     ...auth
 }))
 
