@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Skeleton } from "@mui/material";
 import { useState } from "react";
 import Overlay from "./Overlay";
 import useFetchMenue from "../../../../CustomHooks/Update/useFetchMenue";
@@ -55,6 +55,23 @@ export default function ScreenV2({ config, src }) {
                 }} 
             >
                     <Overlay isVisible={isMouseOver} config={config} lastUpdated={"March 8 2025"}/>
+                    {
+                        (query.isLoading && !image) && (
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    zIndex: 11,
+                                    top: -130,
+                                    left: 0
+                                }}
+                            >
+                                <Skeleton 
+                                    width={"80dvw"}
+                                    height={"70dvh"}
+                                />   
+                            </Box>
+                        )
+                    }
                     {
                         (imageNotChanged)? (
                             <img 
