@@ -4,6 +4,7 @@ import Overlay from "./Overlay";
 import useFetchMenue from "../../../../CustomHooks/Update/useFetchMenue";
 import useUploadMenue from "../../../../CustomHooks/Update/useUploadMenue";
 import { useImageUpload } from "../../../Contexts/MenueOpperation";
+import useFetchUpdateDate from "../../../../CustomHooks/Update/useFetchUpdateDate";
 
 export default function ScreenV2({ config, src }) {
 
@@ -15,6 +16,8 @@ export default function ScreenV2({ config, src }) {
     const initialImgData = query?.data?.data?.content
     const shaHashCode = query?.data?.data?.sha;
 
+    const lastUpdateQuery = useFetchUpdateDate(config);
+    console.log("commit query",lastUpdateQuery?.data?.data);
     const { opperation } = useImageUpload()
     const [image, setImage] = useState("");
     const uploadQuery = useUploadMenue(
@@ -24,7 +27,6 @@ export default function ScreenV2({ config, src }) {
         image === initialImgData
     );
 
-    console.log("in card: ", opperation)
     const imageNotChanged = initialImgData && !image;
     if (opperation && opperation?.target === config?.display && opperation?.payload?.image) {
         if (image !== opperation?.payload?.image) {
